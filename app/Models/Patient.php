@@ -19,4 +19,8 @@ class Patient extends Model
         'password',
         'status'
     ];
+    public function myAppointment()
+    {
+        return $this->hasMany();
+    }
 }

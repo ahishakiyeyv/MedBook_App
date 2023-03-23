@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
+use App\Models\Rendezvous;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class RendezvousController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,21 +24,23 @@ class PatientController extends Controller
      */
     public function create(Request $request)
     {
-        //creating a patient
-        $patient = new Patient([
-            'nom_patient'=>$request->get('nom_patient'),
-            'prenom_patient'=>$request->get('nom_etu'),
-            'email'=>$request->get('email'),
-            'telephone'=>$request->get('telephone'),
-            'adresse'=>$request->get('adresse'),
-            'password'=>$request->get('password'),
-            'status'=>0
+        //creating the appointment
+        $appointment = new Rendezvous([
+            'nom'=>$request->get('nom'),
+            'prenom'=>$request->get('prenom'),
+            'age'=>$request->get('age'),
+            'sexe'=>$request->get('sexe'),
+            'numero_ordre'=>$request->get('numero_ordre'),
+            'date_arrive'=>$request->get('date_arrive'),
+            'service'=>$request->get('service'),
+            'remarque'=>$request->get('remarque'),
+ 
         ]);
-        $patient->save();
+        $appointment->save();
         $reponse= [
             'success'=>true,
-            'data'=>$patient,
-            'message'=>"Patient enregistre avec succes"
+            'data'=>$appointment,
+            'message'=>"Rendezvous enregistre avec succes"
         ];
         return response()->json($reponse,200);
     }
@@ -62,9 +64,9 @@ class PatientController extends Controller
      */
     public function show()
     {
-        //showing the patient's data
-        $patient = Patient::all();
-        return  $patient;
+        //showing the appointment
+        $appointment = Rendezvous::all();
+        return $appointment;
     }
 
     /**
@@ -87,25 +89,26 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //updating the patient's data
-        $patient = new Patient([
-            'nom_patient'=>$request->get('nom_patient'),
-            'prenom_patient'=>$request->get('nom_etu'),
-            'email'=>$request->get('email'),
-            'telephone'=>$request->get('telephone'),
-            'adresse'=>$request->get('adresse'),
-            'password'=>$request->get('password'),
-            'status'=>0
+        //updating the appointment
+        $appointment = new Rendezvous([
+            'nom'=>$request->get('nom'),
+            'prenom'=>$request->get('prenom'),
+            'age'=>$request->get('age'),
+            'sexe'=>$request->get('sexe'),
+            'numero_ordre'=>$request->get('numero_ordre'),
+            'date_arrive'=>$request->get('date_arrive'),
+            'service'=>$request->get('service'),
+            'remarque'=>$request->get('remarque'),
+ 
         ]);
-        $patient = Patient::findOrFail($id);
-        $patient->update();
+        $appointment = Rendezvous::findOrFail($id);
+        $appointment->update();
         $reponse= [
             'success'=>true,
-            'data'=>$patient,
-            'message'=>"Patient modifie avec succes"
+            'data'=>$appointment,
+            'message'=>"Rendezvous enregistre avec succes"
         ];
         return response()->json($reponse,200);
-        
     }
 
     /**
@@ -116,8 +119,8 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //Deleting the patient's data
-        $delete = Patient::findOrFail($id);
-         $delete->delete();
+        //deleting the appointment
+        $delete = Rendezvous::findOrFail($id);
+        return $delete;
     }
 }
