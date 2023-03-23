@@ -21,6 +21,6 @@ class Patient extends Model
     ];
     public function myAppointment()
     {
-        return $this->hasMany();
+        return $this->hasMany('App\Models\Rendezvous','id','rendezvous_id');
     }
 }

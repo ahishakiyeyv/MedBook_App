@@ -21,4 +21,8 @@ class Medecin extends Model
         'password',
         'status'
     ];
+    public function myPatient()
+    {
+        return $this->hasMany('App\Models\Patient','id','patient_id');
+    }
 }

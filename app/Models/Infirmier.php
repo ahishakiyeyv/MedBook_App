@@ -19,4 +19,8 @@ class Infirmier extends Model
         'password',
         'status'
     ];
+    public function myAppointment()
+    {
+        return $this->hasMany('App\Models\Rendezvous','id','rendezvous_id');
+    }
 }
