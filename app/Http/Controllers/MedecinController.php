@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rendezvous;
+use App\Models\Medecin;
 use Illuminate\Http\Request;
 
-class RendezvousController extends Controller
+class MedecinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +24,24 @@ class RendezvousController extends Controller
      */
     public function create(Request $request)
     {
-        //creating the appointment
-        $appointment = new Rendezvous([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'age'=>$request->get('age'),
+        //creating the medecin
+        $medecin = new Medecin([
+            'matricule'=>$request->get('matricule'),
+            'nom_med'=>$request->get('nom_med'),
+            'prenom_med'=>$request->get('prenom_med'),
+            'email'=>$request->get('email'),
+            'telephone'=>$request->get('telephone'),
             'sexe'=>$request->get('sexe'),
-            'numero_ordre'=>$request->get('numero_ordre'),
-            'date_arrive'=>$request->get('date_arrive'),
             'service'=>$request->get('service'),
-            'remarque'=>$request->get('remarque'),
+            'password'=>$request->get('password'),
+            'status'=>0
  
         ]);
-        $appointment->save();
+        $medecin->save();
         $reponse= [
             'success'=>true,
-            'data'=>$appointment,
-            'message'=>"Rendezvous enregistre avec succes"
+            'data'=>$medecin,
+            'message'=>"Medecin enregistre avec succes"
         ];
         return response()->json($reponse,200);
     }
@@ -64,9 +65,9 @@ class RendezvousController extends Controller
      */
     public function show()
     {
-        //showing the appointment
-        $appointment = Rendezvous::all();
-        return $appointment;
+        //showing the medecin's data
+        $medecin = Medecin::all();
+        return $medecin;
     }
 
     /**
@@ -89,24 +90,25 @@ class RendezvousController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //updating the appointment
-        $appointment = new Rendezvous([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'age'=>$request->get('age'),
+        //updating the medecin's data
+        $medecin = new Medecin([
+            'matricule'=>$request->get('matricule'),
+            'nom_med'=>$request->get('nom_med'),
+            'prenom_med'=>$request->get('prenom_med'),
+            'email'=>$request->get('email'),
+            'telephone'=>$request->get('telephone'),
             'sexe'=>$request->get('sexe'),
-            'numero_ordre'=>$request->get('numero_ordre'),
-            'date_arrive'=>$request->get('date_arrive'),
             'service'=>$request->get('service'),
-            'remarque'=>$request->get('remarque'),
+            'password'=>$request->get('password'),
+            'status'=>0
  
         ]);
-        $appointment = Rendezvous::findOrFail($id);
-        $appointment->update();
+        $medecin = Medecin::findOrFail($id);
+        $medecin->update();
         $reponse= [
             'success'=>true,
-            'data'=>$appointment,
-            'message'=>"Rendezvous modifie avec succes"
+            'data'=>$medecin,
+            'message'=>"Medecin modifie avec succes"
         ];
         return response()->json($reponse,200);
     }
@@ -119,8 +121,8 @@ class RendezvousController extends Controller
      */
     public function destroy($id)
     {
-        //deleting the appointment
-        $delete = Rendezvous::findOrFail($id);
+        //deleting the medecin's data
+        $delete = Medecin::findOrFail($id);
         return $delete;
     }
 }

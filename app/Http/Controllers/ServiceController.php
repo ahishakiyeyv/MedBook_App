@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rendezvous;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class RendezvousController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +24,16 @@ class RendezvousController extends Controller
      */
     public function create(Request $request)
     {
-        //creating the appointment
-        $appointment = new Rendezvous([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'age'=>$request->get('age'),
-            'sexe'=>$request->get('sexe'),
-            'numero_ordre'=>$request->get('numero_ordre'),
-            'date_arrive'=>$request->get('date_arrive'),
-            'service'=>$request->get('service'),
-            'remarque'=>$request->get('remarque'),
+        //creating the service
+        $service = new Service([
+            'nom_service'=>$request->get('nom_service')
  
         ]);
-        $appointment->save();
+        $service->save();
         $reponse= [
             'success'=>true,
-            'data'=>$appointment,
-            'message'=>"Rendezvous enregistre avec succes"
+            'data'=>$service,
+            'message'=>"Service enregistre avec succes"
         ];
         return response()->json($reponse,200);
     }
@@ -64,9 +57,9 @@ class RendezvousController extends Controller
      */
     public function show()
     {
-        //showing the appointment
-        $appointment = Rendezvous::all();
-        return $appointment;
+        //showing the service
+        $service = Service::all();
+        return $service;
     }
 
     /**
@@ -89,24 +82,17 @@ class RendezvousController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //updating the appointment
-        $appointment = new Rendezvous([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'age'=>$request->get('age'),
-            'sexe'=>$request->get('sexe'),
-            'numero_ordre'=>$request->get('numero_ordre'),
-            'date_arrive'=>$request->get('date_arrive'),
-            'service'=>$request->get('service'),
-            'remarque'=>$request->get('remarque'),
+        //updating the service
+        $service = new Service([
+            'nom_service'=>$request->get('nom_service')
  
         ]);
-        $appointment = Rendezvous::findOrFail($id);
-        $appointment->update();
+        $service = Service::findOrFail($id);
+        $service->update();
         $reponse= [
             'success'=>true,
-            'data'=>$appointment,
-            'message'=>"Rendezvous modifie avec succes"
+            'data'=>$service,
+            'message'=>"Service modifie avec succes"
         ];
         return response()->json($reponse,200);
     }
@@ -119,8 +105,8 @@ class RendezvousController extends Controller
      */
     public function destroy($id)
     {
-        //deleting the appointment
-        $delete = Rendezvous::findOrFail($id);
+        //deleting the service
+        $delete = Service::findOrFail($id);
         return $delete;
     }
 }
