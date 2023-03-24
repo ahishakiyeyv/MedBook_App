@@ -27,12 +27,13 @@ class PatientController extends Controller
         //creating a patient
         $patient = new Patient([
             'nom_patient'=>$request->get('nom_patient'),
-            'prenom_patient'=>$request->get('nom_etu'),
+            'prenom_patient'=>$request->get('prenom_patient'),
             'email'=>$request->get('email'),
             'telephone'=>$request->get('telephone'),
             'adresse'=>$request->get('adresse'),
             'password'=>$request->get('password'),
-            'status'=>0
+            'status'=>0,
+            'rendezvous_id'=>$request->get('rendezvous_id')
         ]);
         $patient->save();
         $reponse= [
@@ -95,7 +96,8 @@ class PatientController extends Controller
             'telephone'=>$request->get('telephone'),
             'adresse'=>$request->get('adresse'),
             'password'=>$request->get('password'),
-            'status'=>0
+            'status'=>0,
+            'rendezvous_id'=>$request->get('rendezvous_id')
         ]);
         $patient = Patient::findOrFail($id);
         $patient->update();

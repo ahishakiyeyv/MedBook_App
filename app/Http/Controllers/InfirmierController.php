@@ -32,7 +32,8 @@ class InfirmierController extends Controller
             'email'=>$request->get('email'),
             'telephone'=>$request->get('telephone'),
             'password'=>$request->get('password'),
-            'status'=>0
+            'status'=>0,
+            'rendezvous_id'=>$request->get('rendezvous_id')
  
         ]);
         $infirmier->save();
@@ -96,7 +97,8 @@ class InfirmierController extends Controller
             'email'=>$request->get('email'),
             'telephone'=>$request->get('telephone'),
             'password'=>$request->get('password'),
-            'status'=>0
+            'status'=>0,
+            'rendezvous_id'=>$request->get('rendezvous_id')
  
         ]);
         $infirmier = Infirmier::findOrFail($id);

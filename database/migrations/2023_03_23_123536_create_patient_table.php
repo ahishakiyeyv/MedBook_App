@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('adresse');
             $table->string('password');
+            $table->integer('status');
             $table->unsignedBigInteger('rendezvous_id');
             $table->foreign('rendezvous_id')->references('id')->on('rendezvous')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

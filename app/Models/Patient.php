@@ -17,7 +17,8 @@ class Patient extends Model
         'telephone',
         'adresse',
         'password',
-        'status'
+        'status',
+        'rendezvous_id'
     ];
     public function myAppointment()
     {

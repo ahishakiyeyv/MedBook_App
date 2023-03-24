@@ -17,7 +17,8 @@ class Infirmier extends Model
         'email',
         'telephone',
         'password',
-        'status'
+        'status',
+        'rendezvous_id'
     ];
     public function myAppointment()
     {

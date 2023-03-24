@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('service');
             $table->string('password');
             $table->integer('status');
-            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('patient_id')->nullable();
             $table->foreign('patient_id')->references('id')->on('patient')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
