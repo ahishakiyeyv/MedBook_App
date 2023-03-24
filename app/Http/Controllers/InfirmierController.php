@@ -90,24 +90,15 @@ class InfirmierController extends Controller
     public function update(Request $request, $id)
     {
         //updating an infirmier
-        $infiermier = new Infirmier([
-            'matricule'=>$request->get('matricule'),
-            'nom_inf'=>$request->get('nom_inf'),
-            'prenom_inf'=>$request->get('prenom_inf'),
-            'email'=>$request->get('email'),
-            'telephone'=>$request->get('telephone'),
-            'password'=>$request->get('password'),
-            'status'=>0,
-            'rendezvous_id'=>$request->get('rendezvous_id')
- 
-        ]);
-        $infirmier = Infirmier::findOrFail($id);
-        $infirmier->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$infirmier,
-            'message'=>"Infirmier enregistre avec succes"
-        ];
+        $updateInf = Infirmier::findOrFail($id);
+        $input = $request->all();
+        $updateInf->fill($input)->update();
+        $updateInf->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updateInf,
+           'message'=>"Infirmier modifie avec succes"
+       ];
         return response()->json($reponse,200);
     }
 
@@ -121,6 +112,6 @@ class InfirmierController extends Controller
     {
         //deleting an infirmier
         $delete = Infirmier::findOrFail($id);
-        return $delete;
+        $delete->delete();
     }
 }

@@ -91,25 +91,16 @@ class MedecinController extends Controller
     public function update(Request $request, $id)
     {
         //updating the medecin's data
-        $medecin = new Medecin([
-            'matricule'=>$request->get('matricule'),
-            'nom_med'=>$request->get('nom_med'),
-            'prenom_med'=>$request->get('prenom_med'),
-            'email'=>$request->get('email'),
-            'telephone'=>$request->get('telephone'),
-            'sexe'=>$request->get('sexe'),
-            'service'=>$request->get('service'),
-            'password'=>$request->get('password'),
-            'status'=>0
- 
-        ]);
-        $medecin = Medecin::findOrFail($id);
-        $medecin->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$medecin,
-            'message'=>"Medecin modifie avec succes"
-        ];
+        
+        $updateMed = Medecin::findOrFail($id);
+        $input = $request->all();
+        $updateMed->fill($input)->update();
+        $updateMed->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updateMed,
+           'message'=>"Medecin modifie avec succes"
+       ];
         return response()->json($reponse,200);
     }
 
@@ -123,6 +114,6 @@ class MedecinController extends Controller
     {
         //deleting the medecin's data
         $delete = Medecin::findOrFail($id);
-        return $delete;
+        $delete->delete();
     }
 }

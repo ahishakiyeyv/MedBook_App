@@ -83,17 +83,15 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         //updating the service
-        $service = new Service([
-            'nom_service'=>$request->get('nom_service')
- 
-        ]);
-        $service = Service::findOrFail($id);
-        $service->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$service,
-            'message'=>"Service modifie avec succes"
-        ];
+        $updateSer = Service::findOrFail($id);
+        $input = $request->all();
+        $updateSer->fill($input)->update();
+        $updateSer->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updateSer,
+           'message'=>"Service modifie avec succes"
+       ];
         return response()->json($reponse,200);
     }
 
@@ -107,6 +105,6 @@ class ServiceController extends Controller
     {
         //deleting the service
         $delete = Service::findOrFail($id);
-        return $delete;
+        $delete->delete();
     }
 }

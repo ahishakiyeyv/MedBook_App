@@ -89,23 +89,15 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         //updating the patient's data
-        $patient = new Patient([
-            'nom_patient'=>$request->get('nom_patient'),
-            'prenom_patient'=>$request->get('nom_etu'),
-            'email'=>$request->get('email'),
-            'telephone'=>$request->get('telephone'),
-            'adresse'=>$request->get('adresse'),
-            'password'=>$request->get('password'),
-            'status'=>0,
-            'rendezvous_id'=>$request->get('rendezvous_id')
-        ]);
-        $patient = Patient::findOrFail($id);
-        $patient->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$patient,
-            'message'=>"Patient modifie avec succes"
-        ];
+        $updatePat = Patient::findOrFail($id);
+        $input = $request->all();
+        $updatePat->fill($input)->update();
+        $updatePat->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updatePat,
+           'message'=>"Patient modifie avec succes"
+       ];
         return response()->json($reponse,200);
         
     }

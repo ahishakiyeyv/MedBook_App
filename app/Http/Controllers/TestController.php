@@ -85,19 +85,15 @@ class TestController extends Controller
     public function update(Request $request, $id)
     {
         //updating the test
-        $test = new Test([
-            'nom_test'=>$request->get('nom_test'),
-            'prix_test'=>$request->get('prix_test'),
-            'description'=>$request->get('description')
- 
-        ]);
-        $test = Test::findOrFail($id);
-        $test->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$test,
-            'message'=>"Test modifie avec succes"
-        ];
+        $updateTest = Test::findOrFail($id);
+        $input = $request->all();
+        $updateTest->fill($input)->update();
+        $updateTest->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updateTest,
+           'message'=>"Test modifie avec succes"
+       ];
         return response()->json($reponse,200);
     }
 
@@ -111,6 +107,6 @@ class TestController extends Controller
     {
         //deleting the test
         $delete = Test::findOrFail($id);
-        return $delete;
+        $delete->delete();
     }
 }

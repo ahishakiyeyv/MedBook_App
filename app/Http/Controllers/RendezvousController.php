@@ -90,24 +90,15 @@ class RendezvousController extends Controller
     public function update(Request $request, $id)
     {
         //updating the appointment
-        $appointment = new Rendezvous([
-            'nom'=>$request->get('nom'),
-            'prenom'=>$request->get('prenom'),
-            'age'=>$request->get('age'),
-            'sexe'=>$request->get('sexe'),
-            'numero_ordre'=>$request->get('numero_ordre'),
-            'date_arrive'=>$request->get('date_arrive'),
-            'service'=>$request->get('service'),
-            'remarque'=>$request->get('remarque'),
- 
-        ]);
-        $appointment = Rendezvous::findOrFail($id);
-        $appointment->update();
-        $reponse= [
-            'success'=>true,
-            'data'=>$appointment,
-            'message'=>"Rendezvous modifie avec succes"
-        ];
+        $updateApp = Rendezvous::findOrFail($id);
+        $input = $request->all();
+        $updateApp->fill($input)->update();
+        $updateApp->update();
+        $reponse = [
+           'success'=>true,
+           'data'=>$updateApp,
+           'message'=>"Rendez vous modifie avec succes"
+       ];
         return response()->json($reponse,200);
     }
 
@@ -121,6 +112,6 @@ class RendezvousController extends Controller
     {
         //deleting the appointment
         $delete = Rendezvous::findOrFail($id);
-        return $delete;
+        $delete->delete();
     }
 }
