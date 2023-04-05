@@ -6,6 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\InfirmierController;
 use App\Http\Controllers\RendezvousController;
 
@@ -19,6 +20,11 @@ use App\Http\Controllers\RendezvousController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/register','register');
+    Route::post('/login','login');
+    Route::get('/me','me');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

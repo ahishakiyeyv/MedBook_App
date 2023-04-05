@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom_patient',
+        'prenom_patient',
         'email',
+        'telephone',
+        'adresse',
         'password',
+        'status',
     ];
 
     /**
@@ -41,4 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function myAppointment()
+    {
+        return $this->hasMany('App\Models\Rendezvous','id','rendezvous_id');
+    }
 }
