@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('numero_ordre');
             $table->date('date_arrive');
             $table->string('service');
-            $table->string('remarque');
+            $table->string('remarque')->nullable();
             $table->timestamps();
         });
     }
