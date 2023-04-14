@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -15,7 +18,7 @@ class AuthController extends Controller
             'nom_patient' => 'required',
             'prenom_patient' => 'required',
             'email' => 'required|email',
-            'telephone' => 'required|email',
+            'telephone' => 'required',
             'adresse' => 'required',
             'password' => 'required',
             'status' => 'required',
@@ -50,7 +53,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         # code...
-        if(Auth::attempt(['email' => $request-> $email, 'password' =>$request-> $password])){
+        if(Auth::attempt(['email' => $request->email, 'password' =>$request-> password])){
             $user=Auth::user();
             $success['user']=$user;
             $success['nom_patient']=$user->nom_patient;

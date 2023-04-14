@@ -20,15 +20,18 @@ use App\Http\Controllers\RendezvousController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::controller(AuthController::class)->group(function(){
     Route::post('/register','register');
     Route::post('/login','login');
     Route::get('/me','me');
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::controller(MedecinController::class)->group(function(){
     Route::post('/create_medecin','create');
     Route::get('/medecin','show');
@@ -62,6 +65,7 @@ Route::controller(TestController::class)->group(function(){
 Route::controller(RendezvousController::class)->group(function(){
     Route::post('/create_appointment','create');
     Route::get('/appointment','show');
+    Route::get('/appointment/{id}','edit');
     Route::put('/update_appointment/{id}','update');
     Route::post('/delete_appointment/{id}','destroy');
 });

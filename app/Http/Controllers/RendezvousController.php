@@ -37,12 +37,12 @@ class RendezvousController extends Controller
  
         ]);
         $appointment->save();
-        $reponse= [
+        $response= [
             'success'=>true,
             'data'=>$appointment,
             'message'=>"Rendezvous enregistre avec succes"
         ];
-        return response()->json($reponse,200);
+        return response()->json($response,200);
     }
 
     /**
@@ -77,7 +77,10 @@ class RendezvousController extends Controller
      */
     public function edit($id)
     {
-        //
+        //getting the appointment details
+        $details=Rendezvous::where('id','=',$id)->get();
+        
+        return $details;
     }
 
     /**
