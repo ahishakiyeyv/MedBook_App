@@ -71,6 +71,8 @@ class ServiceController extends Controller
     public function edit($id)
     {
         //
+        $details=Service::where('id','=',$id)->get();
+        return $details;    
     }
 
     /**

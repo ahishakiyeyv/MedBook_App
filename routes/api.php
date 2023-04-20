@@ -53,6 +53,7 @@ Route::controller(InfirmierController::class)->group(function(){
 Route::controller(ServiceController::class)->group(function(){
     Route::post('/create_service','create');
     Route::get('/service','show');
+    Route::get('/services/{id}','edit');
     Route::put('/update_service/{id}','update');
     Route::post('/delete_service/{id}','destroy');
 });
