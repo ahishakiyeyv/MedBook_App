@@ -33,6 +33,7 @@ class RendezvousController extends Controller
             'numero_ordre'=>$request->get('numero_ordre'),
             'date_arrive'=>$request->get('date_arrive'),
             'service'=>$request->get('service'),
+            'status'=>$request->get('status'),
             'remarque'=>$request->get('remarque'),
  
         ]);
@@ -54,6 +55,12 @@ class RendezvousController extends Controller
     public function store(Request $request)
     {
         //
+        $query= Rendezvous::query();
+    if($request->has('nom')){
+        $query->where('nom','like','%'.$request->get('nom').'%');
+    }
+    $result=$query->get();
+    return response()->json($result);
     }
 
     /**
@@ -117,4 +124,30 @@ class RendezvousController extends Controller
         $delete = Rendezvous::findOrFail($id);
         $delete->delete();
     }
+    // public function updateMessage(Request $request, $id){
+    //     $updateMessage=Rendezvous::find($id);
+    //     $updateMessage->status=$request->get('status');
+    //     $updateMessage->remarque=$request->get('remarque');
+    
+    //     // $updateMessage->status=$status;
+    //     // $updateMessage->remarque=$message;
+    //     $updateMessage->save();
+    //     return $updateMessage;
+
+    // }
+    public function updateMessage(Request $request, $id){
+        // $validatedData = $request->validate([
+        //     'status' => 'required',
+        //     'remarque' => 'required',
+        // ]);
+    
+        $updateMessage = Rendezvous::findOrFail($id);
+        $updateMessage->update([
+            'status' => $request->status,
+            'remarque' => $request->remarque,
+        ]);
+    
+        return $updateMessage;
+    }
+  
 }

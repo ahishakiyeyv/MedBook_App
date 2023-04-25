@@ -18,6 +18,7 @@ class Rendezvous extends Model
         'numero_ordre',
         'date_arrive',
         'service',
+        'status',
         'remarque'
     ];
 }

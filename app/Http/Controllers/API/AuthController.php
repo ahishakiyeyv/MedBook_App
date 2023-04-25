@@ -80,4 +80,8 @@ class AuthController extends Controller
         // code...
         return response()->json(Auth::user());
     }
+    public function showUsers(){
+        $users = User::all();
+        return $users;
+    }
 }

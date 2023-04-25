@@ -30,6 +30,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/register','register');
     Route::post('/login','login');
     Route::get('/me','me');
+    Route::get('/user','showUsers');
 });
 
 Route::controller(MedecinController::class)->group(function(){
@@ -65,7 +66,9 @@ Route::controller(TestController::class)->group(function(){
 });
 Route::controller(RendezvousController::class)->group(function(){
     Route::post('/create_appointment','create');
+    Route::put('/update_message/{id}','updateMessage');
     Route::get('/appointment','show');
+    Route::get('/search','store');
     Route::get('/appointment/{id}','edit');
     Route::put('/update_appointment/{id}','update');
     Route::post('/delete_appointment/{id}','destroy');
