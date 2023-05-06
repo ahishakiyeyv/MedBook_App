@@ -35,6 +35,7 @@ class RendezvousController extends Controller
             'service'=>$request->get('service'),
             'status'=>$request->get('status'),
             'remarque'=>$request->get('remarque'),
+            'user_id'=>$request->get('user_id')
  
         ]);
         $appointment->save();

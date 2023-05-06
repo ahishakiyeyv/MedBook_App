@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Infirmier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InfirmierController extends Controller
 {
@@ -17,6 +18,47 @@ class InfirmierController extends Controller
         //
     }
 
+    public function RegisterInf(Request $request){
+        $input=$request->all();
+        $input['password']= bcrypt($input['password']);
+        $infirmier = Infirmier::create($input);
+        $success['nom_inf']=$infirmier->nom_inf;
+        $success['matricule']=$infirmier->matricule;
+        $success['status']=$infirmier->status;
+
+        $response=[
+            'success'=>true,
+            'data'=>$success,
+            'message'=>"Infirmier registed successfully"
+        ];
+        return response()->json($response,200);
+    }
+
+    public function loginInf(Request $request){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            $infirmier = Auth::user();
+            $success['infirmier'] = $infirmier;
+            $success['nom_inf'] = $infirmier->nom_inf;
+            $response = [
+                'success' => true,
+                'data' => $success,
+                'message' => "Infirmier connecté avec succès"
+            ];
+            return response()->json($response,200);
+        }else{
+            $response=[
+                'success' => false,
+                'message' => "Veuillez vérifier vos identifiants"
+            ];
+            return response()->json($response,400);
+        }
+    }
+
+    public function me(Request $request)
+    {
+        // code...
+        return response()->json(Auth::user());
+    }
     /**
      * Show the form for creating a new resource.
      *

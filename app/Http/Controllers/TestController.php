@@ -60,7 +60,7 @@ class TestController extends Controller
     public function show()
     {
         //showing the test
-        $test = Test::all();
+        $test = Test::paginate(5);
         return $test;
     }
 

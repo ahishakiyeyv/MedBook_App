@@ -46,6 +46,9 @@ Route::controller(PatientController::class)->group(function(){
     Route::post('/delete_patient/{id}','destroy');
 });
 Route::controller(InfirmierController::class)->group(function(){
+    Route::post('/register_inf', 'RegisterInf');
+    Route::post('/login_inf','loginInf');
+    Route::get('/me','me');
     Route::post('/create_infirmier','create');
     Route::get('/infirmier','show');
     Route::put('/update_infirmier/{id}','update');
@@ -57,6 +60,7 @@ Route::controller(ServiceController::class)->group(function(){
     Route::get('/services/{id}','edit');
     Route::put('/update_service/{id}','update');
     Route::post('/delete_service/{id}','destroy');
+    Route::get('/page','paginate');
 });
 Route::controller(TestController::class)->group(function(){
     Route::post('/create_test','create');

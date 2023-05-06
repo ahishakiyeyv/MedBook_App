@@ -19,6 +19,10 @@ class Rendezvous extends Model
         'date_arrive',
         'service',
         'status',
-        'remarque'
+        'remarque',
+        'user_id'
     ];
+    public function myUsers(){
+        return $this->hasOne('App\Models\Users','id','user_id');
+    }
 }

@@ -58,8 +58,9 @@ class ServiceController extends Controller
     public function show()
     {
         //showing the service
-        $service = Service::all();
+        $service = Service::paginate(5);
         return $service;
+        
     }
 
     /**
@@ -108,5 +109,9 @@ class ServiceController extends Controller
         //deleting the service
         $delete = Service::findOrFail($id);
         $delete->delete();
+    }
+    public function paginate(Request $request){
+        $data=Service::paginate(3);
+        return response()->json($data);
     }
 }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('service');
             $table->string('status')->nullable();
             $table->string('remarque')->nullable();
+            $table->foreign('user_id')->references('id')-on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
