@@ -73,6 +73,10 @@ Route::controller(RendezvousController::class)->group(function(){
     Route::put('/update_message/{id}','updateMessage');
     Route::get('/appointment','show');
     Route::get('/search','store');
+    Route::get('/status0','select0');
+    Route::get('/status1','select1');
+    Route::get('/status2','select2');
+    Route::get('/status3','select3');
     Route::get('/appointment/{id}','edit');
     Route::put('/update_appointment/{id}','update');
     Route::post('/delete_appointment/{id}','destroy');

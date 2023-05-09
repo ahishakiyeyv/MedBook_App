@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rendezvous;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RendezvousController extends Controller
 {
@@ -150,5 +151,20 @@ class RendezvousController extends Controller
     
         return $updateMessage;
     }
-  
+    public function select0(){
+        $result=Rendezvous::where('status',0)->get();
+        return $result;
+    }
+    public function select1(){
+        $result=Rendezvous::where('status',1)->get();
+        return $result;
+    }
+    public function select2(){
+        $result=Rendezvous::where('status',2)->get();
+        return $result;
+    }
+    public function select3(){
+        $result=Rendezvous::where('status',null)->get();
+        return $result;
+    }
 }

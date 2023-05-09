@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('prenom_inf');
             $table->string('email');
             $table->string('telephone');
+            $table->string('specialite');
+            $table->string('sexe');
             $table->string('password');
             $table->integer('status');
             $table->unsignedBigInteger('rendezvous_id');

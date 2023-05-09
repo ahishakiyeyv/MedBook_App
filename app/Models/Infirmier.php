@@ -16,6 +16,8 @@ class Infirmier extends Model
         'prenom_inf',
         'email',
         'telephone',
+        'specialite',
+        'sexe',
         'password',
         'status',
         'rendezvous_id'

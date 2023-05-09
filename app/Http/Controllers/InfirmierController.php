@@ -36,7 +36,7 @@ class InfirmierController extends Controller
 
     public function loginInf(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $infirmier = Auth::user();
+            $infirmier = Auth::Infirmier();
             $success['infirmier'] = $infirmier;
             $success['nom_inf'] = $infirmier->nom_inf;
             $response = [
@@ -44,14 +44,14 @@ class InfirmierController extends Controller
                 'data' => $success,
                 'message' => "Infirmier connecté avec succès"
             ];
-            return response()->json($response,200);
-        }else{
-            $response=[
-                'success' => false,
-                'message' => "Veuillez vérifier vos identifiants"
-            ];
-            return response()->json($response,400);
-        }
+            return response()->json($response,200);}
+        // }else{
+        //     $response=[
+        //         'success' => false,
+        //         'message' => "Veuillez vérifier vos identifiants"
+        //     ];
+        //     return response()->json($response,400);
+        // }
     }
 
     public function me(Request $request)
