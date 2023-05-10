@@ -167,4 +167,35 @@ class RendezvousController extends Controller
         $result=Rendezvous::where('status',null)->get();
         return $result;
     }
+    public function count1(Request $request){
+        $user_id=$request->get('user_id');
+        $count= Rendezvous::
+                where('status','=',1)
+                ->where('user_id',$user_id)
+                ->count();
+        return $count;
+    }
+    public function count0(Request $request){
+        $user_id=$request->get('user_id');
+        $count=Rendezvous::
+                    where('status','=',0)
+                    ->where('user_id',$user_id)
+                    ->count();
+        return $count;
+    }
+    public function count2(Request $request){
+        $user_id=$request->get('user_id');
+        $count=Rendezvous::
+                where('status','=',2)
+                ->where('user_id',$user_id)
+                ->count();
+        return $count;
+    }
+    public function count(Request $request){
+        $user_id=$request->get('user_id');
+        $count=Rendezvous::
+                where('user_id',$user_id)
+                ->count();
+        return $count;
+    }
 }
