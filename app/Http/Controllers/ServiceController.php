@@ -24,18 +24,39 @@ class ServiceController extends Controller
      */
     public function create(Request $request)
     {
-        //creating the service
-        $service = new Service([
+        $service=Service::where('nom_service',$request->get('nom_service'))->first();
+
+        if($service){
+            //service already exists
+            $reponse=[
+                'success'=>false,
+                'data'=>null,
+                'message'=>'Service existe deja',
+            ];
+            return response()->json('exists');
+        }
+        //creating the service if it doesn't exist
+        $service=Service::create([
             'nom_service'=>$request->get('nom_service')
- 
         ]);
-        $service->save();
-        $reponse= [
+        $reponse=[
             'success'=>true,
             'data'=>$service,
-            'message'=>"Service enregistre avec succes"
+            'message'=>'service enregistre avec succes'
         ];
         return response()->json($reponse,200);
+
+            // $service = new Service([
+            //     'nom_service'=>$request->get('nom_service')
+    
+            // ]);
+            // $service->save();
+            // $reponse= [
+            //     'success'=>true,
+            //     'data'=>$service,
+            //     'message'=>"Service enregistre avec succes"
+            // ];
+            // return response()->json($reponse,200);
     }
 
     /**
