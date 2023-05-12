@@ -84,4 +84,8 @@ class AuthController extends Controller
         $users = User::all();
         return $users;
     }
+    public function countUser(){
+        $count= User::count();
+        return $count;
+    }
 }

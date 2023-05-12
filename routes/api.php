@@ -31,6 +31,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/login','login');
     Route::get('/me','me');
     Route::get('/user','showUsers');
+    Route::get('/countUser','countUser');
 });
 
 Route::controller(MedecinController::class)->group(function(){
