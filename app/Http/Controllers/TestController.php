@@ -24,6 +24,12 @@ class TestController extends Controller
      */
     public function create(Request $request)
     {
+        $test=Test::where('nom_test',$request->get('nom_test'))->first();
+
+        if($test){
+            //nom test existe deja
+            return response()->json('exists');
+        }
         //creating test
         $test = new Test([
             'nom_test'=>$request->get('nom_test'),
