@@ -135,4 +135,8 @@ class ServiceController extends Controller
         $data=Service::paginate(3);
         return response()->json($data);
     }
+    public function countService(){
+        $count=Service::count();
+        return $count;
+    }
 }

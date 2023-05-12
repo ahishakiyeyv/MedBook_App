@@ -62,6 +62,7 @@ Route::controller(ServiceController::class)->group(function(){
     Route::put('/update_service/{id}','update');
     Route::post('/delete_service/{id}','destroy');
     Route::get('/page','paginate');
+    Route::get('/countservice','countService');
 });
 Route::controller(TestController::class)->group(function(){
     Route::post('/create_test','create');
