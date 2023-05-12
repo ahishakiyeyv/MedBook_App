@@ -198,4 +198,8 @@ class RendezvousController extends Controller
                 ->count();
         return $count;
     }
+    public function allCount(){
+        $count=Rendezvous::count();
+        return $count;
+    }
 }
