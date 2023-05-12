@@ -199,7 +199,7 @@ class RendezvousController extends Controller
         return $count;
     }
     public function allCount(){
-        $count=Rendezvous::count();
+        $count=Rendezvous::whereDate('date_arrive','=',now()->toDateString())->count();
         return $count;
     }
 }

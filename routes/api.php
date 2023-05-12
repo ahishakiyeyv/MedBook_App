@@ -82,6 +82,7 @@ Route::controller(RendezvousController::class)->group(function(){
     Route::get('/count0','count0');
     Route::get('/count1','count1');
     Route::get('/count2','count2');
+    Route::get('/allcount','allCount');
     Route::get('/appointment/{id}','edit');
     Route::put('/update_appointment/{id}','update');
     Route::post('/delete_appointment/{id}','destroy');
