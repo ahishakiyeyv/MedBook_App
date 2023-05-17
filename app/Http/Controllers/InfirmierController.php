@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Infirmier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class InfirmierController extends Controller
 {
@@ -34,23 +35,43 @@ class InfirmierController extends Controller
         return response()->json($response,200);
     }
 
+    // public function loginInf(Request $request){
+    //     if(Auth::attempt(['email' => $request->email, 'password' =>$request-> password])){
+    //         $infirmier = Auth::user();
+    //         $success['infirmier'] = $infirmier;
+    //         $success['nom_inf'] = $infirmier->nom_inf;
+    //         $response = [
+    //             'success' => true,
+    //             'data' => $success,
+    //             'message' => "Infirmier connecté avec succès"
+    //         ];
+    //             return response()->json($response,200);
+    //     }else{
+    //         $response=[
+    //             'success' => false,
+    //             'message' => "Veuillez vérifier vos identifiants"
+    //         ];
+    //         return response()->json($response,401);
+    //     }
+    // }
+     
     public function loginInf(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' =>$request-> password])){
-            $infirmier = Auth::user();
-            $success['Infirmier'] = $infirmier;
-            $success['nom_inf'] = $infirmier->nom_inf;
-            $response = [
-                'success' => true,
-                'data' => $success,
-                'message' => "Infirmier connecté avec succès"
+        $infirmier=Infirmier::where('email',$request->email)->first();
+        if($infirmier && Hash::check($request->password, $infirmier->password)){
+            $success['infirmier']=$infirmier;
+            $success['nom_inf']=$infirmier->nom_inf;
+            $response=[
+                'success'=>true,
+                'data'=>$success,
+                'message'=>"infirmier connecte avec success"
             ];
             return response()->json($response,200);
         }else{
-            $response=[
+            $response = [
                 'success' => false,
                 'message' => "Veuillez vérifier vos identifiants"
             ];
-            return response()->json($response,401);
+            return response()->json($response, 401);
         }
     }
 

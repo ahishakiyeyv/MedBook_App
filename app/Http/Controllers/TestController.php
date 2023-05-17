@@ -115,4 +115,8 @@ class TestController extends Controller
         $delete = Test::findOrFail($id);
         $delete->delete();
     }
+    public function countTest(){
+        $count=Test::count();
+        return $count;
+    }
 }

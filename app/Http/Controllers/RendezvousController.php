@@ -202,4 +202,14 @@ class RendezvousController extends Controller
         $count=Rendezvous::whereDate('date_arrive','=',now()->toDateString())->count();
         return $count;
     }
+    public function appointToday(){
+        $today=now()->format('Y-m-d');
+        $appoint=Rendezvous::whereDate('date_arrive','=',$today)->get();
+
+        return $appoint;
+    }
+    public function All(){
+        $count=Rendezvous::count();
+        return $count;
+    }
 }

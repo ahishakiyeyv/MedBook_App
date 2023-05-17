@@ -69,6 +69,7 @@ Route::controller(TestController::class)->group(function(){
     Route::get('/test','show');
     Route::put('/update_test/{id}','update');
     Route::post('/delete_test/{id}','destroy');
+    Route::get('/countTest','countTest');
 });
 Route::controller(RendezvousController::class)->group(function(){
     Route::post('/create_appointment','create');
@@ -84,6 +85,8 @@ Route::controller(RendezvousController::class)->group(function(){
     Route::get('/count1','count1');
     Route::get('/count2','count2');
     Route::get('/allcount','allCount');
+    Route::get('all','All');
+    Route::get('/today','appointToday');
     Route::get('/appointment/{id}','edit');
     Route::put('/update_appointment/{id}','update');
     Route::post('/delete_appointment/{id}','destroy');
