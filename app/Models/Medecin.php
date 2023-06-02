@@ -11,15 +11,13 @@ class Medecin extends Model
     protected $table = 'medecin';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'matricule',
         'nom_med',
         'prenom_med',
         'email',
         'telephone',
         'sexe',
-        'service',
-        'password',
-        'status'
+        'specialite',
+        'disponibilite'
     ];
     public function myPatient()
     {

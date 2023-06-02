@@ -74,7 +74,8 @@ class RendezvousController extends Controller
     public function show()
     {
         //showing the appointment
-        $appointment = Rendezvous::all();
+        // $appointment = Rendezvous::all();
+        $appointment = Rendezvous::orderByDesc('id')->get();
         return $appointment;
     }
 

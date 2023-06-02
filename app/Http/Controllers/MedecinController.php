@@ -26,15 +26,13 @@ class MedecinController extends Controller
     {
         //creating the medecin
         $medecin = new Medecin([
-            'matricule'=>$request->get('matricule'),
             'nom_med'=>$request->get('nom_med'),
             'prenom_med'=>$request->get('prenom_med'),
             'email'=>$request->get('email'),
             'telephone'=>$request->get('telephone'),
             'sexe'=>$request->get('sexe'),
-            'service'=>$request->get('service'),
-            'password'=>$request->get('password'),
-            'status'=>0
+            'specialite'=>$request->get('specialite'),
+            'disponibilite'=>$request->get('disponibilite'),
  
         ]);
         $medecin->save();
@@ -66,6 +64,7 @@ class MedecinController extends Controller
     public function show()
     {
         //showing the medecin's data
+        // $medecin = Medecin::orderByDesc('id')->get();
         $medecin = Medecin::all();
         return $medecin;
     }

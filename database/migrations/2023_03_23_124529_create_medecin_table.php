@@ -15,15 +15,13 @@ return new class extends Migration
     {
         Schema::create('medecin', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
             $table->string('nom_med');
             $table->string('prenom_med');
             $table->string('email');
             $table->string('telephone');
             $table->string('sexe');
-            $table->string('service');
-            $table->string('password');
-            $table->integer('status');
+            $table->string('specialite');
+            $table->string('disponibilite');
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->foreign('patient_id')->references('id')->on('patient')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
