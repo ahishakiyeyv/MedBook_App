@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Infirmier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -138,9 +139,19 @@ class InfirmierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $email=$request->get('email');
+        $password=$request->get('password');
+
+        $user = Infirmier::where('email', $email)->first();
+         
+        if($user){
+            $user->password=Hash::make($password);
+            $user->save();
+        }else{
+            echo "Email n'existe pas";
+        }
     }
 
     /**

@@ -32,6 +32,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/me','me');
     Route::get('/user','showUsers');
     Route::get('/countUser','countUser');
+    Route::post('/reset_password','resetPassword');
 });
 
 Route::controller(MedecinController::class)->group(function(){
@@ -54,6 +55,7 @@ Route::controller(InfirmierController::class)->group(function(){
     Route::get('/infirmier','show');
     Route::put('/update_infirmier/{id}','update');
     Route::post('/delete_infirmier/{id}','destroy');
+    Route::post('/reset','edit');
 });
 Route::controller(ServiceController::class)->group(function(){
     Route::post('/create_service','create');

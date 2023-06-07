@@ -88,4 +88,18 @@ class AuthController extends Controller
         $count= User::count();
         return $count;
     }
+    public function resetPassword(Request $request){
+        $email=$request->get('email');
+        $password=$request->get('password');
+        
+        $user= User::where('email',$email)->first();
+
+        if($user){
+            $user->password= Hash::make($password);
+            $user->save();
+        }
+        else{
+            echo "<script>alert('Email n'existe pas')</script>";
+        }
+    }
 }
